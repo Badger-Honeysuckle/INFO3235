@@ -1,0 +1,62 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.1, pytest-8.3.5, pluggy-1.5.0
+rootdir: C:\Users\adver\Downloads\KPU\Printemp_25\INFO3235\Project\QA
+collected 2 items
+
+test_battleship_counter.py FF
+
+================================== FAILURES ===================================
+________________________ test_increment_not_max_ships _________________________
+
+mock_setGameState = <MagicMock name='setGameState' id='1713467417632'>
+mock_dependencies = None
+
+    @patch("Battleship.setGameState")
+    def test_increment_not_max_ships(mock_setGameState, mock_dependencies):
+        """Test increment when shipsPlaced is less than maxShips."""
+>       Counter.increment()
+
+test_battleship_counter.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+Battleship.py:420: in increment
+    board.setText("Select "+str(maxShips)+" squares on the player grid ("+str(maxShips-shipsPlaced)+" more)")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Board object at 0x0000018EF0F04B60>
+newText = 'Select 5 squares on the player grid (4 more)'
+
+    def setText(self, newText):
+>       self.instructionLabel.config(text=newText)
+E       AttributeError: 'Board' object has no attribute 'instructionLabel'
+
+Battleship.py:262: AttributeError
+______________________ test_increment_reaches_max_ships _______________________
+
+mock_setGameState = <MagicMock name='setGameState' id='1713467594736'>
+mock_dependencies = None
+
+    @patch("Battleship.setGameState")
+    def test_increment_reaches_max_ships(mock_setGameState, mock_dependencies):
+        """Test increment when shipsPlaced reaches maxShips."""
+        global shipsPlaced
+        shipsPlaced = maxShips - 1  # Set shipsPlaced to one less than maxShips
+>       Counter.increment()
+
+test_battleship_counter.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+Battleship.py:420: in increment
+    board.setText("Select "+str(maxShips)+" squares on the player grid ("+str(maxShips-shipsPlaced)+" more)")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Board object at 0x0000018EF0F04B60>
+newText = 'Select 5 squares on the player grid (3 more)'
+
+    def setText(self, newText):
+>       self.instructionLabel.config(text=newText)
+E       AttributeError: 'Board' object has no attribute 'instructionLabel'
+
+Battleship.py:262: AttributeError
+=========================== short test summary info ===========================
+FAILED test_battleship_counter.py::test_increment_not_max_ships - AttributeEr...
+FAILED test_battleship_counter.py::test_increment_reaches_max_ships - Attribu...
+============================== 2 failed in 2.20s ==============================

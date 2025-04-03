@@ -1,0 +1,41 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.1, pytest-8.3.5, pluggy-1.5.0
+rootdir: C:\Users\adver\Downloads\KPU\Printemp_25\INFO3235\Project\QA
+collected 1 item
+
+test_battleship_showrules.py F
+
+================================== FAILURES ===================================
+_______________________________ test_showRules ________________________________
+
+mock_setGameState = <MagicMock name='setGameState' id='2460629533616'>
+mock_dependencies = None
+
+    @patch("Battleship.setGameState")
+    def test_showRules(mock_setGameState, mock_dependencies):
+        """Test the showRules subroutine."""
+        showRules()
+    
+        # Assert that the board's reset method was called
+>       board.reset.assert_called_once()
+
+test_battleship_showrules.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <MagicMock name='mock.reset' id='2460629501472'>
+
+    def assert_called_once(self):
+        """assert that the mock was called only once.
+        """
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to have been called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'reset' to have been called once. Called 0 times.
+
+C:\Python312\Lib\unittest\mock.py:923: AssertionError
+=========================== short test summary info ===========================
+FAILED test_battleship_showrules.py::test_showRules - AssertionError: Expecte...
+============================== 1 failed in 2.20s ==============================

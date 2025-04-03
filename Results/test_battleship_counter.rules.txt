@@ -1,0 +1,8 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.1, pytest-8.3.5, pluggy-1.5.0
+rootdir: C:\Users\adver\Downloads\KPU\Printemp_25\INFO3235\Project\QA
+collected 5 items
+
+test_battleship_rules.py .....
+
+============================== 5 passed in 1.33s ==============================

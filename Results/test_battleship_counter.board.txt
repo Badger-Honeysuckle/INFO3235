@@ -1,0 +1,105 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.1, pytest-8.3.5, pluggy-1.5.0
+rootdir: C:\Users\adver\Downloads\KPU\Printemp_25\INFO3235\Project\QA
+collected 5 items
+
+test_battleship_board.py FF.F.
+
+================================== FAILURES ===================================
+______________________________ test_board_setup _______________________________
+
+board = <Battleship.Board object at 0x000002D2129C91F0>
+
+    def test_board_setup(board):
+        """Test the setup method of the Board class."""
+>       board.setup()
+
+test_battleship_board.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+Battleship.py:184: in setup
+    gridFrame.columnconfigure(i,weight=1)
+C:\Python312\Lib\tkinter\__init__.py:1852: in grid_columnconfigure
+    return self._grid_configure('columnconfigure', index, cnf, kw)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tkinter.Frame object .!frame>, command = 'columnconfigure', index = 0
+cnf = {}, kw = {'weight': 1}
+
+    def _grid_configure(self, command, index, cnf, kw):
+        """Internal function."""
+        if isinstance(cnf, str) and not kw:
+            if cnf[-1:] == '_':
+                cnf = cnf[:-1]
+            if cnf[:1] != '-':
+                cnf = '-'+cnf
+            options = (cnf,)
+        else:
+            options = self._options(cnf, kw)
+        if not options:
+            return _splitdict(
+                self.tk,
+                self.tk.call('grid', command, self._w, index),
+                conv=self._gridconvvalue)
+>       res = self.tk.call(
+                  ('grid', command, self._w, index)
+                  + options)
+E       _tkinter.TclError: can't invoke "grid" command: application has been destroyed
+
+C:\Python312\Lib\tkinter\__init__.py:1840: TclError
+______________________________ test_board_reset _______________________________
+
+board = <Battleship.Board object at 0x000002D2129E0FB0>
+
+    def test_board_reset(board):
+        """Test the reset method of the Board class."""
+        # Mock playerBoard and enemyBoard
+        global playerBoard, enemyBoard
+        playerBoard = [[MagicMock(state="Occupied") for _ in range(gridSize)] for _ in range(gridSize)]
+        enemyBoard = [[MagicMock(state="Occupied") for _ in range(gridSize)] for _ in range(gridSize)]
+    
+>       board.reset()
+
+test_battleship_board.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Board object at 0x000002D2129E0FB0>
+
+    def reset(self):
+        for i in range(gridSize):
+            for j in range(gridSize):
+>                   enemyBoard[i][j].reset()
+E                   IndexError: list index out of range
+
+Battleship.py:254: IndexError
+____________________________ test_board_reveal_all ____________________________
+
+board = <Battleship.Board object at 0x000002D2144D19D0>
+
+    def test_board_reveal_all(board):
+        """Test the revealAll method of the Board class."""
+        # Mock gameState and enemyBoard
+        global enemyBoard
+        enemyBoard = [[MagicMock(state="Occupied") for _ in range(gridSize)] for _ in range(gridSize)]
+    
+        # Test when gameState is PlayerShooting
+        with patch("Battleship.gameState", "PlayerShooting"):
+>           board.revealAll()
+
+test_battleship_board.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Board object at 0x000002D2144D19D0>
+
+    def revealAll(self):
+        if(gameState=="PlayerShooting" or gameState=="EnemyShooting"):
+            for i in range(gridSize):
+                for j in range(gridSize):
+>                       enemyBoard[i][j].reveal()
+E                       IndexError: list index out of range
+
+Battleship.py:269: IndexError
+=========================== short test summary info ===========================
+FAILED test_battleship_board.py::test_board_setup - _tkinter.TclError: can't ...
+FAILED test_battleship_board.py::test_board_reset - IndexError: list index ou...
+FAILED test_battleship_board.py::test_board_reveal_all - IndexError: list ind...
+========================= 3 failed, 2 passed in 1.88s =========================

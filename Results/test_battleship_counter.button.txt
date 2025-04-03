@@ -1,0 +1,185 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.1, pytest-8.3.5, pluggy-1.5.0
+rootdir: C:\Users\adver\Downloads\KPU\Printemp_25\INFO3235\Project\QA
+collected 5 items
+
+test_battleship_button.py EEEEE
+
+=================================== ERRORS ====================================
+________________ ERROR at setup of test_button_initialization _________________
+
+mock_dependencies = None, mock_tkinter = <MagicMock id='2188588539280'>
+
+    @pytest.fixture
+    def button(mock_dependencies, mock_tkinter):
+        """Fixture to create a Button instance."""
+>       return Button(1, 1)  # Create a button at position (1, 1)
+
+test_battleship_button.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x000001FD920ADD30>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+_____________ ERROR at setup of test_button_click_player_placing ______________
+
+mock_dependencies = None, mock_tkinter = <MagicMock id='2188588942256'>
+
+    @pytest.fixture
+    def button(mock_dependencies, mock_tkinter):
+        """Fixture to create a Button instance."""
+>       return Button(1, 1)  # Create a button at position (1, 1)
+
+test_battleship_button.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x000001FD91ED1E20>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+_____________ ERROR at setup of test_button_click_enemy_shooting ______________
+
+mock_dependencies = None, mock_tkinter = <MagicMock id='2188588951952'>
+
+    @pytest.fixture
+    def button(mock_dependencies, mock_tkinter):
+        """Fixture to create a Button instance."""
+>       return Button(1, 1)  # Create a button at position (1, 1)
+
+test_battleship_button.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x000001FD921103E0>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+_____________________ ERROR at setup of test_button_reset _____________________
+
+mock_dependencies = None, mock_tkinter = <MagicMock id='2188589240960'>
+
+    @pytest.fixture
+    def button(mock_dependencies, mock_tkinter):
+        """Fixture to create a Button instance."""
+>       return Button(1, 1)  # Create a button at position (1, 1)
+
+test_battleship_button.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x000001FD92158560>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+____________________ ERROR at setup of test_button_reveal _____________________
+
+mock_dependencies = None, mock_tkinter = <MagicMock id='2188588950800'>
+
+    @pytest.fixture
+    def button(mock_dependencies, mock_tkinter):
+        """Fixture to create a Button instance."""
+>       return Button(1, 1)  # Create a button at position (1, 1)
+
+test_battleship_button.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x000001FD921125A0>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+=========================== short test summary info ===========================
+ERROR test_battleship_button.py::test_button_initialization - IndexError: lis...
+ERROR test_battleship_button.py::test_button_click_player_placing - IndexErro...
+ERROR test_battleship_button.py::test_button_click_enemy_shooting - IndexErro...
+ERROR test_battleship_button.py::test_button_reset - IndexError: list index o...
+ERROR test_battleship_button.py::test_button_reveal - IndexError: list index ...
+============================== 5 errors in 1.88s ==============================

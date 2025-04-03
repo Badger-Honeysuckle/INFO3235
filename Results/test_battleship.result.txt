@@ -1,0 +1,269 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.1, pytest-8.3.5, pluggy-1.5.0
+rootdir: C:\Users\adver\Downloads\KPU\Printemp_25\INFO3235\Project\QA
+collected 14 items
+
+test_battleship.py ....FFF.FFFFFF
+
+================================== FAILURES ===================================
+______________________________ test_board_setup _______________________________
+
+    def test_board_setup():
+        board = Board()
+>       board.setup()
+
+test_battleship.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+Battleship.py:184: in setup
+    gridFrame.columnconfigure(i,weight=1)
+C:\Python312\Lib\tkinter\__init__.py:1852: in grid_columnconfigure
+    return self._grid_configure('columnconfigure', index, cnf, kw)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tkinter.Frame object .!frame>, command = 'columnconfigure', index = 0
+cnf = {}, kw = {'weight': 1}
+
+    def _grid_configure(self, command, index, cnf, kw):
+        """Internal function."""
+        if isinstance(cnf, str) and not kw:
+            if cnf[-1:] == '_':
+                cnf = cnf[:-1]
+            if cnf[:1] != '-':
+                cnf = '-'+cnf
+            options = (cnf,)
+        else:
+            options = self._options(cnf, kw)
+        if not options:
+            return _splitdict(
+                self.tk,
+                self.tk.call('grid', command, self._w, index),
+                conv=self._gridconvvalue)
+>       res = self.tk.call(
+                  ('grid', command, self._w, index)
+                  + options)
+E       _tkinter.TclError: can't invoke "grid" command: application has been destroyed
+
+C:\Python312\Lib\tkinter\__init__.py:1840: TclError
+______________________________ test_board_reset _______________________________
+
+    def test_board_reset():
+        board = Board()
+>       board.playerBoard = [[Button(0, 0) for _ in range(3)] for _ in range(3)]
+
+test_battleship.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x0000028B488A37D0>, x = 0, y = 0
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+_____________________________ test_board_set_text _____________________________
+
+    def test_board_set_text():
+        board = Board()
+        board.instructionLabel = MagicMock()
+        board.setText("Test Message")
+>       board.instructionLabel.cget.assert_called_with("text")  # Mocked label text set
+
+test_battleship.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <MagicMock name='mock.cget' id='2797245225424'>, args = ('text',)
+kwargs = {}, expected = "cget('text')", actual = 'not called.'
+error_message = "expected call not found.\nExpected: cget('text')\n  Actual: not called."
+
+    def assert_called_with(self, /, *args, **kwargs):
+        """assert that the last call was made with the specified arguments.
+    
+        Raises an AssertionError if the args and keyword args passed in are
+        different to the last call to the mock."""
+        if self.call_args is None:
+            expected = self._format_mock_call_signature(args, kwargs)
+            actual = 'not called.'
+            error_message = ('expected call not found.\nExpected: %s\n  Actual: %s'
+                    % (expected, actual))
+>           raise AssertionError(error_message)
+E           AssertionError: expected call not found.
+E           Expected: cget('text')
+E             Actual: not called.
+
+C:\Python312\Lib\unittest\mock.py:935: AssertionError
+_________________________ test_button_initialization __________________________
+
+    def test_button_initialization():
+>       button = Button(1, 1)
+
+test_battleship.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x0000028B48CEEAB0>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+______________________ test_button_click_player_placing _______________________
+
+    def test_button_click_player_placing():
+>       button = Button(1, 1)
+
+test_battleship.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x0000028B48947170>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+______________________________ test_button_reset ______________________________
+
+    def test_button_reset():
+>       button = Button(1, 1)
+
+test_battleship.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x0000028B48913BC0>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+_____________________________ test_button_reveal ______________________________
+
+    def test_button_reveal():
+>       button = Button(1, 1)
+
+test_battleship.py:99: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Button object at 0x0000028B48913A40>, x = 1, y = 1
+
+    def __init__(self, x, y):
+        #Initializes coordinates in grid and defaults state to be empty
+        self.x = x
+        self.y = y
+        self.state = "Empty"
+    
+        #Identifies if button is in the player grid or enemy grid
+        if(y>gridSize+1):
+            self.playerSquare = True
+        else:
+            self.playerSquare = False
+    
+        #Labels each button based on their relative location of their own grid
+        if(self.playerSquare):
+            self.label = rowLabels[x-1]+str(y-gridSize-1)
+        else:
+>           self.label = rowLabels[x-1]+str(y)
+E           IndexError: list index out of range
+
+Battleship.py:292: IndexError
+_____________________________ test_set_game_state _____________________________
+
+    def test_set_game_state():
+>       setGameState("PlayerPlacing")
+
+test_battleship.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+Battleship.py:376: in setGameState
+    board.setText("Select "+str(maxShips)+" squares on the player grid ("+str(maxShips-shipsPlaced)+" more)")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Battleship.Board object at 0x0000028B453EFFE0>
+newText = 'Select 5 squares on the player grid (5 more)'
+
+    def setText(self, newText):
+>       self.instructionLabel.config(text=newText)
+E       AttributeError: 'Board' object has no attribute 'instructionLabel'
+
+Battleship.py:262: AttributeError
+______________________________ test_check_if_won ______________________________
+
+    def test_check_if_won():
+        global enemySunkCount, maxShips
+        enemySunkCount = 5
+        maxShips = 5
+>       assert checkIfWon() is True  # Game should end when enemy ships are sunk
+E       assert False is True
+E        +  where False = checkIfWon()
+
+test_battleship.py:113: AssertionError
+=========================== short test summary info ===========================
+FAILED test_battleship.py::test_board_setup - _tkinter.TclError: can't invoke...
+FAILED test_battleship.py::test_board_reset - IndexError: list index out of r...
+FAILED test_battleship.py::test_board_set_text - AssertionError: expected cal...
+FAILED test_battleship.py::test_button_initialization - IndexError: list inde...
+FAILED test_battleship.py::test_button_click_player_placing - IndexError: lis...
+FAILED test_battleship.py::test_button_reset - IndexError: list index out of ...
+FAILED test_battleship.py::test_button_reveal - IndexError: list index out of...
+FAILED test_battleship.py::test_set_game_state - AttributeError: 'Board' obje...
+FAILED test_battleship.py::test_check_if_won - assert False is True
+========================= 9 failed, 5 passed in 1.91s =========================
